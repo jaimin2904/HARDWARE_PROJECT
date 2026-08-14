@@ -1,7 +1,19 @@
 import { EphemeralSession, ClinicalIntake } from '../types/intake';
 
+const getApiBaseUrl = () => {
 
-const API_BASE_URL = '/api';
+  const envUrl = import.meta.env.VITE_API_BASE_URL;
+  if (envUrl && envUrl.trim().length > 0) {
+    return envUrl.replace(/\/$/, '') + '/api';
+  }
+  if (typeof window !== 'undefined' && window.location.hostname.includes('vercel.app')) {
+    return 'https://hardware-project-4.onrender.com/api';
+  }
+  return '/api';
+};
+
+const API_BASE_URL = getApiBaseUrl();
+
 
 export interface ApiResponse<T> {
   success: boolean;

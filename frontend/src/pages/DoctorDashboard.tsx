@@ -75,12 +75,14 @@ export const DoctorDashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }
 
   const filteredSessions = sessions.filter((s) => {
     const matchesUrgency = filterUrgency === 'ALL' || s.urgency?.level === filterUrgency;
+    const complaintText = s.structuredIntake?.chief_complaint || '';
     const matchesSearch =
-      s.token?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      s.structuredIntake?.chief_complaint.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      s.language.toLowerCase().includes(searchTerm.toLowerCase());
+      (s.token || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      complaintText.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (s.language || '').toLowerCase().includes(searchTerm.toLowerCase());
     return matchesUrgency && matchesSearch;
   });
+
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
@@ -313,7 +315,7 @@ export const DoctorDashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-800/60">
-                    {selectedSession.structuredIntake?.symptoms.map((sym, idx) => (
+                    {(selectedSession.structuredIntake?.symptoms || []).map((sym, idx) => (
                       <tr key={idx} className="text-slate-200">
                         <td className="py-2.5 font-medium text-teal-300">{sym.name}</td>
                         <td className="py-2.5 italic text-slate-400 text-[11px]">{sym.normalized_name}</td>
@@ -336,7 +338,7 @@ export const DoctorDashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }
                   Possible Symptom Categories (Not Diagnosis)
                 </span>
                 <div className="flex flex-wrap gap-1.5">
-                  {selectedSession.structuredIntake?.possible_symptom_categories.map((cat, idx) => (
+                  {(selectedSession.structuredIntake?.possible_symptom_categories || []).map((cat, idx) => (
                     <span key={idx} className="bg-teal-950/80 border border-teal-500/30 text-teal-300 text-xs px-2.5 py-1 rounded-lg">
                       {cat}
                     </span>
@@ -349,12 +351,13 @@ export const DoctorDashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }
                   Missing Information Flags
                 </span>
                 <ul className="list-disc list-inside text-xs text-slate-300 space-y-1">
-                  {selectedSession.structuredIntake?.missing_information.map((info, idx) => (
+                  {(selectedSession.structuredIntake?.missing_information || []).map((info, idx) => (
                     <li key={idx}>{info}</li>
                   ))}
                 </ul>
               </div>
             </div>
+
 
             {/* Privacy Compliance Footer */}
             <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
