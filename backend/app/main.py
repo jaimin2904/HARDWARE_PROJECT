@@ -81,9 +81,20 @@ async def generic_exception_handler(request: Request, exc: Exception):
 app.include_router(session.router)
 app.include_router(doctor.router)
 
+@app.get("/")
+async def root():
+    return {
+        "status": "ok",
+        "service": settings.APP_NAME,
+        "version": settings.VERSION,
+        "docs_url": "/docs",
+        "health_url": "/health"
+    }
+
 @app.get("/health")
 async def health_check():
     return {"status": "ok", "service": settings.APP_NAME, "version": settings.VERSION}
+
 
 if __name__ == "__main__":
     import uvicorn
