@@ -1,0 +1,30 @@
+# Environment variables & secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# Dependencies
+node_modules/
+
+# Production builds
+dist/
+build/
+
+# Python cache & test artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# Scratch scripts
+scratch/
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,162 @@
+[
+  {
+    "id": "TC-01",
+    "language": "hi-IN",
+    "transcript": "मुझे पिछले 3 दिनों से तेज़ बुखार है, सिर में तेज़ दर्द है और ठंड लग रही है।",
+    "expected_symptoms": ["Fever", "Headache", "Chills"],
+    "expected_urgency": "MEDIUM",
+    "scenario": "Simple fever and headache"
+  },
+  {
+    "id": "TC-02",
+    "language": "gu-IN",
+    "transcript": "મને અચાનક છાતીમાં ખૂબ જ તીવ્ર દુખાવો થઈ રહ્યો છે અને ડાબા હાથમાં સુન્નતા આવે છે.",
+    "expected_symptoms": ["Chest Pain", "Arm Numbness"],
+    "expected_urgency": "EMERGENCY",
+    "scenario": "Acute chest pain radiating to left arm (Cardiac trigger)"
+  },
+  {
+    "id": "TC-03",
+    "language": "mr-IN",
+    "transcript": "मला गेल्या ६ महिन्यांपासून गुडघेदुखीचा त्रास आहे.",
+    "expected_symptoms": ["Knee Pain"],
+    "expected_urgency": "LOW",
+    "scenario": "Chronic joint pain"
+  },
+  {
+    "id": "TC-04",
+    "language": "ta-IN",
+    "transcript": "எனக்கு திடீரென்று கடுமையான மூச்சுத்திணறல் ஏற்பட்டுள்ளது.",
+    "expected_symptoms": ["Shortness of breath"],
+    "expected_urgency": "EMERGENCY",
+    "scenario": "Sudden severe respiratory distress"
+  },
+  {
+    "id": "TC-05",
+    "language": "te-IN",
+    "transcript": "బయట తిన్న తర్వాత నాకు కడుపునొప్పి మరియు వికారంగా ఉంది.",
+    "expected_symptoms": ["Abdominal pain", "Nausea"],
+    "expected_urgency": "MEDIUM",
+    "scenario": "Gastrointestinal distress"
+  },
+  {
+    "id": "TC-06",
+    "language": "bn-IN",
+    "transcript": "আমার ৩ দিন ধরে খুব গ্যাঙ্গু জ্বর এবং শরীরে লাল লাল র‍্যাশ উঠেছে।",
+    "expected_symptoms": ["Fever", "Skin Rash"],
+    "expected_urgency": "HIGH",
+    "scenario": "Febrile illness with skin rash"
+  },
+  {
+    "id": "TC-07",
+    "language": "kn-IN",
+    "transcript": "ನನಗೆ ೨ ದಿನಗಳಿಂದ ಸಾಮಾನ್ಯ ಕೆಮ್ಮು ಮತ್ತು ನೆಗಡಿ ಇದೆ.",
+    "expected_symptoms": ["Cough", "Cold"],
+    "expected_urgency": "LOW",
+    "scenario": "Mild URI symptoms"
+  },
+  {
+    "id": "TC-08",
+    "language": "ml-IN",
+    "transcript": "എനിക്ക് ഇന്നലെ മുതൽ കടുത്ത വയറിളക്കവും ഛർദ്ദിയും ഉണ്ട്.",
+    "expected_symptoms": ["Diarrhea", "Vomiting"],
+    "expected_urgency": "MEDIUM",
+    "scenario": "Acute gastroenteritis"
+  },
+  {
+    "id": "TC-09",
+    "language": "en-IN",
+    "transcript": "I came for a routine BP checkup, feeling fine.",
+    "expected_symptoms": ["Routine Checkup"],
+    "expected_urgency": "LOW",
+    "scenario": "Asymptomatic routine check"
+  },
+  {
+    "id": "TC-10",
+    "language": "hi-IN",
+    "transcript": "Mujhe 2 din se fever hai aur severe breathlessness feeling ho rahi hai.",
+    "expected_symptoms": ["Fever", "Breathlessness"],
+    "expected_urgency": "HIGH",
+    "scenario": "Mixed Hinglish fever with dyspnea"
+  },
+  {
+    "id": "TC-11",
+    "language": "hi-IN",
+    "transcript": "छाती में पत्थर रखा जैसा लग रहा है और सांस रुक रही है।",
+    "expected_symptoms": ["Chest Pressure", "Shortness of breath"],
+    "expected_urgency": "EMERGENCY",
+    "scenario": "Colloquial idiom for cardiac pressure"
+  },
+  {
+    "id": "TC-12",
+    "language": "gu-IN",
+    "transcript": "ડાયાબિટીસના કારણે પગના અંગૂઠામાં મોટો ઘા પડી ગયો છે અને તાવ આવે છે.",
+    "expected_symptoms": ["Foot Ulcer", "Fever"],
+    "expected_urgency": "HIGH",
+    "scenario": "Infected diabetic ulcer"
+  },
+  {
+    "id": "TC-13",
+    "language": "mr-IN",
+    "transcript": "लहान बाळाच्या कान दुखत आहे आणि काल रात्रीपासून रडत आहे.",
+    "expected_symptoms": ["Ear pain", "Crying"],
+    "expected_urgency": "MEDIUM",
+    "scenario": "Paediatric ear ache"
+  },
+  {
+    "id": "TC-14",
+    "language": "ta-IN",
+    "transcript": "அவருக்கு திடீரென வாய் கோணி பேச்சு குளறுகிறது.",
+    "expected_symptoms": ["Facial Droop", "Slurred Speech"],
+    "expected_urgency": "EMERGENCY",
+    "scenario": "Stroke symptoms (Neurological trigger)"
+  },
+  {
+    "id": "TC-15",
+    "language": "te-IN",
+    "transcript": "మూత్ర విసర్జన సమయంలో తీవ్రమైన మంటగా ఉంది.",
+    "expected_symptoms": ["Dysuria", "Burning Micturition"],
+    "expected_urgency": "MEDIUM",
+    "scenario": "Urinary tract infection signs"
+  },
+  {
+    "id": "TC-16",
+    "language": "bn-IN",
+    "transcript": "আমি হাটে যাচ্ছিলাম, রাস্তায় কার সাথে যেন ঝগড়া হলো, এখন হালকা মাথা ব্যথা করছে।",
+    "expected_symptoms": ["Headache"],
+    "expected_urgency": "LOW",
+    "scenario": "Irrelevant narrative speech with mild headache"
+  },
+  {
+    "id": "TC-17",
+    "language": "kn-IN",
+    "transcript": "ಹೊಟ್ಟೆಯಲ್ಲಿ ಸಣ್ಣಗೆ ನೋವು ಇದೆ.",
+    "expected_symptoms": ["Abdominal pain"],
+    "expected_urgency": "MEDIUM",
+    "scenario": "Incomplete/short abdominal complaint"
+  },
+  {
+    "id": "TC-18",
+    "language": "hi-IN",
+    "transcript": "मुझे दमे की बीमारी है और आज सीटी जैसी आवाज के साथ बहुत तेज सांस फूल रही है।",
+    "expected_symptoms": ["Wheezing", "Severe Dyspnea"],
+    "expected_urgency": "EMERGENCY",
+    "scenario": "Severe asthma attack exacerbation"
+  },
+  {
+    "id": "TC-19",
+    "language": "gu-IN",
+    "transcript": "ચામડી પર હળવી ખંજવાળ આવે છે.",
+    "expected_symptoms": ["Pruritus", "Skin Itching"],
+    "expected_urgency": "LOW",
+    "scenario": "Mild dermatological itching"
+  },
+  {
+    "id": "TC-20",
+    "language": "mr-IN",
+    "transcript": "अतिशय तीव्र तापाने रुग्ण अस्वस्थ होऊन बडबड करत आहे.",
+    "expected_symptoms": ["High Fever", "Altered Sensorium"],
+    "expected_urgency": "EMERGENCY",
+    "scenario": "High fever with altered mental status"
+  }
+]
