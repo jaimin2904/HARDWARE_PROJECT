@@ -109,7 +109,8 @@ Return ONLY a JSON object with this exact structure:
   "body_location": "Involved anatomical regions e.g. Legs and Arms",
   "onset": "Onset summary e.g. 10 days ago or Acute",
   "possible_symptom_categories": ["Category 1", "Category 2"],
-  "model_urgency": "LOW|MEDIUM|HIGH|EMERGENCY",
+  "model_urgency": "LOW (for mild single complaints or chronic conditions e.g. 6 months knee pain, 2 weeks mild cough, 1 month back pain) | MEDIUM | HIGH | EMERGENCY",
+
   "model_urgency_reason": "Clinical justification for urgency",
   "missing_information": ["Missing clinical detail 1"],
   "confidence": 0.95

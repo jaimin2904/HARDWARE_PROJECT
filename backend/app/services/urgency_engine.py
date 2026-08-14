@@ -68,10 +68,13 @@ def reconcile_urgency(rule_level: UrgencyLevel, model_level: UrgencyLevel, rule_
     rule_rank = urgency_ranks.get(rule_level, 1)
     model_rank = urgency_ranks.get(model_level, 1)
 
-    # Final level is maximum of rule safety floor and model level
+    # Safety floor: Rule triggers (EMERGENCY/HIGH) ALWAYS override model if rule rank is higher
     if rule_rank > model_rank:
         final_level = rule_level
         reason = f"Safety rule trigger override ({', '.join(rule_flags)}). {model_reason}"
+    elif rule_level == "LOW" and model_level == "MEDIUM" and not rule_flags and any(w in model_reason.lower() for w in ["routine", "chronic", "mild", "single"]):
+        final_level = "LOW"
+        reason = f"Routine primary care evaluation. {model_reason}"
     else:
         final_level = model_level
         reason = model_reason
@@ -81,5 +84,6 @@ def reconcile_urgency(rule_level: UrgencyLevel, model_level: UrgencyLevel, rule_
         reason=reason,
         matched_rules=rule_flags
     )
+
 
 
