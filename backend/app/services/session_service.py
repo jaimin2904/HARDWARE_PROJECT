@@ -64,12 +64,59 @@ class SessionService:
                 smap = {s.session_id: s for s in in_mem}
                 for sb in supabase_sessions:
                     sid = sb.get("session_id")
-                    if sid and sid not in smap:
-                        sess = EphemeralSessionData(sid, sb.get("clinic_id", clinic_id), sb.get("language", "en-IN"))
-                        sess.transcript = sb.get("original_text", "")
-                        sess.status = sb.get("status", "waiting")
-                        sess.token = sb.get("token", f"#A-{sid[:4].upper()}")
-                        smap[sid] = sess
+                    if sid:
+                        existing = smap.get(sid)
+                        if not existing:
+                            existing = EphemeralSessionData(sid, sb.get("clinic_id", clinic_id), sb.get("language", "en-IN"))
+                            smap[sid] = existing
+
+                        existing.transcript = sb.get("original_text") or existing.transcript
+                        existing.status = sb.get("status") or existing.status
+                        existing.token = sb.get("token") or existing.token
+
+                        english_summary = sb.get("english_summary")
+                        symptoms_raw = sb.get("symptoms") or []
+                        urgency_val = sb.get("urgency") or "MEDIUM"
+                        duration_val = sb.get("duration") or "Duration not specified"
+                        category_val = sb.get("category") or "General"
+
+                        if (english_summary or symptoms_raw) and not existing.structured_intake:
+                            sym_details = []
+                            for s in symptoms_raw:
+                                if isinstance(s, dict):
+                                    sym_details.append(SymptomDetail(
+                                        name=s.get("name", "Reported Symptom"),
+                                        normalized_name=s.get("normalized_name", "Symptom"),
+                                        location=s.get("location", "General"),
+                                        duration=s.get("duration", duration_val),
+                                        severity=s.get("severity", "Not specified"),
+                                        onset=s.get("onset", "Acute"),
+                                        certainty=s.get("certainty", "Confirmed")
+                                    ))
+
+                            if not sym_details:
+                                sym_details.append(SymptomDetail(
+                                    name="Reported Symptom",
+                                    normalized_name="Clinical Narration Symptom",
+                                    location="General",
+                                    duration=duration_val,
+                                    severity="Not specified",
+                                    onset="Acute"
+                                ))
+
+                            existing.structured_intake = ClinicalIntake(
+                                chief_complaint=english_summary or "Health complaint reported for clinical evaluation",
+                                symptoms=sym_details,
+                                associated_symptoms=[],
+                                duration=duration_val,
+                                severity="Not specified",
+                                body_location=sym_details[0].location if sym_details else "General",
+                                onset="Acute",
+                                possible_symptom_categories=[c.strip() for c in category_val.split(",")] if category_val else ["General Clinical Assessment"],
+                                urgency=UrgencyAssessment(level=urgency_val, reason="Stored clinical intake from patient session.", matched_rules=[]),
+                                missing_information=["Detailed vital signs examination"],
+                                confidence=0.90
+                            )
                 return list(smap.values())
             return in_mem
 
