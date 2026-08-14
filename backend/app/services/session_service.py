@@ -3,7 +3,8 @@ import uuid
 import threading
 from datetime import datetime, timezone, timedelta
 from typing import Dict, Optional, List
-from app.schemas.intake import ClinicalIntake, UrgencyAssessment, SessionStatus
+from app.schemas.intake import ClinicalIntake, SymptomDetail, UrgencyAssessment, SessionStatus
+
 from app.config import settings
 from app.utils.logger import logger
 
